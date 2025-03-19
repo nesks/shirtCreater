@@ -46,14 +46,30 @@ const Costumizer = () => {
 
   const handleSubmit = async (type) => {
     if(!prompt) return alert("Please enter a prompt")
-      // try{
-          
-      // }catch(error){
-      //   alert(error)
-      // }finally{
-      //   setGeneratingImg(false);
-      //   setActiveEditorTab('')
-      // }
+      try{
+          setGeneratingImg(true);
+          const backendUrl = "https://shirtcreaterserver.onrender.com/api/v1/dalle"
+          const response = await fetch(backendUrl, {
+            method: 'POST',
+            headers: {
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+              prompt,
+            })
+          });
+
+          const data = await response.json();
+          if(data && data.message){
+            alert(data.message);
+          }
+          handleDecals(type, `data:image/png;base64,${data.photo}`)
+      }catch(error){
+        alert(error)
+      }finally{
+        setGeneratingImg(false);
+        setActiveEditorTab('')
+      }
   }
 
   const handleDecals = (type, result) =>{
@@ -75,6 +91,7 @@ const Costumizer = () => {
       default:
         state.isLogoTexture = true;
         state.isFullTexture = false;
+        break;
     }
     
     setActiveFilterTab(prevState =>{
