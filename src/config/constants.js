@@ -13,6 +13,11 @@ export const EditorTabs = [
     name: "aipicker",
     icon: ai,
   },
+  
+  {
+    name: "personpicker",
+    icon: ai,
+  },
 ];
 
 export const FilterTabs = [
