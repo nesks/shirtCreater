@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, Center } from '@react-three/drei';
-import {downloadCanvasToImage} from '../config/helpers';
 import Shirt from './Shirt';
 import Backdrop from './Backdrop';
 import CameraRig from './CameraRig';
@@ -27,12 +26,6 @@ const CanvasModel = () => {
           </Center>
         </CameraRig>
       </Canvas>
-      <button
-        onClick={downloadCanvasToImage}
-        className="absolute bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        Capturar Imagem
-      </button>
     </div>
   );
 };

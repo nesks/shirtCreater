@@ -1,9 +1,11 @@
 const config = {
   development: {
-    backendUrl: "http://localhost:8080/api/v1/dalle",
+    backendUrl: "http://localhost:8080/api/",
+    socketUrl: "ws://localhost:3000"
   },
   production: {
-    backendUrl: "https://devswag.onrender.com/api/v1/dalle",
+    backendUrl: "https://devswag.onrender.com/api/",
+    socketUrl: "wss://shirtcreaterserver.onrender.com"
   },
 };
 
