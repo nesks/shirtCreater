@@ -4,7 +4,7 @@ const config = {
     socketUrl: "ws://localhost:3000"
   },
   production: {
-    backendUrl: "https://devswag.onrender.com/api/",
+    backendUrl: "https://shirtcreaterserver.onrender.com/api/",
     socketUrl: "wss://shirtcreaterserver.onrender.com"
   },
 };
