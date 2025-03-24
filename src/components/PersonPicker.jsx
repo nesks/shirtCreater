@@ -56,6 +56,9 @@ const PersonPicker = () => {
             alert(data.output.error)
         }else{
             alert(data.output.status)
+            if(data.output.status== "completed"){
+                setImage(data.output.output[0]);
+            }
         }
       return false;
     };
