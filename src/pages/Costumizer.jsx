@@ -50,7 +50,7 @@ const Costumizer = () => {
     if(!prompt) return alert("Please enter a prompt")
       try{
           setGeneratingImg(true);
-          const backendUrl = config.production.backendUrl+"v1/dalle"
+          const backendUrl = config.backendUrl+"v1/dalle"
           const response = await fetch(backendUrl, {
             method: 'POST',
             headers: {

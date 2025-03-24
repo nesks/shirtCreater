@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import config from '../config/config';
 
 const useWebSocket = (userId) => {
+   
     const [messages, setMessages] = useState([]);
     const [socket, setSocket] = useState(null);
 
     useEffect(() => {
-        const ws = new WebSocket(config.production.socketUrl+`?id=${userId}`);
+        if(!userId){return};
+        const ws = new WebSocket(config.socketUrl+`?id=${userId}`);
 
         ws.onopen = () => {
             console.log(`Conectado como ${userId}`);

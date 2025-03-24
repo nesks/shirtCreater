@@ -13,24 +13,23 @@ const PersonPicker = () => {
     // Função que faz a requisição para pegar o ID do servidor
     const fetchUserId = async () => {
         try {
-            // const canvas = document.querySelector("canvas");
-            // const shirt = canvas.toDataURL();
-            // const personImage = await reader(person); // Agora aguardamos a leitura
-            // const backendUrl = config.production.backendUrl+"v1/fashnai";
-            // const response = await fetch(backendUrl, {
-            //     method: 'POST',
-            //     headers: {
-            //     'Content-type': 'application/json'
-            //     },
-            //     body: JSON.stringify({
-            //     person: personImage,
-            //     shirt: shirt
-            //     })
-            // });
-            // const data = await response.json();
-            // setUserId(data.id); // Aqui você armazena o ID retornado
-            setUserId("53541ca7-3b41-4c5b-af85-5d3de21b6bce");
-            console.log('ID do usuário:', userId);
+            const canvas = document.querySelector("canvas");
+            const shirt = canvas.toDataURL();
+            const personImage = await reader(person); // Agora aguardamos a leitura
+            const backendUrl = config.backendUrl+"v1/fashnai";
+            const response = await fetch(backendUrl, {
+                method: 'POST',
+                headers: {
+                'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                person: personImage,
+                shirt: shirt
+                })
+            });
+            const data = await response.json();
+            setUserId(data.id); // Aqui você armazena o ID retornado
+            // setUserId("53541ca7-3b41-4c5b-af85-5d3de21b6bce");
         } catch (error) {
             alert('Erro ao buscar ID: ' + error);
         }
@@ -38,34 +37,27 @@ const PersonPicker = () => {
 
     // Função que vai processar a imagem
     const handleReceiveImage = async () => {
-
-            const backendUrl = config.production.backendUrl+"v1/fashnai/sendImage";
-            await fetch(backendUrl, {
-                method: 'POST',
-                headers: {
-                'Content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "id": "53541ca7-3b41-4c5b-af85-5d3de21b6bce",
-                    "status": "completed",
-                    "output": [
-                      "https://i.scdn.co/image/ab67616d00001e0262cb74fb128f1c3fada6b9b4"
-                    ],
-                    "error": null
-                  })
-            });
-            
-        if(!userId) {
-            alert('Aguardando conexão com o WebSocket...');
+        // const id = "6beb70d1-5bbe-4fb6-91d3-1defd57bad9c";
+        if(!userId){
             return;
         }
-
-        sendMessage({
-            id: userId,
-            tipo: 'solicitar_imagem', // Envia um comando para o servidor pedir a imagem
+        const backendUrl = config.backendUrl+ `v1/fashnai/status?id=${userId}`;
+        const response = await fetch(backendUrl, {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json'
+          }
         });
 
-        console.log('Pedido de imagem enviado.');
+            
+        const data = await response.json();
+        console.log(data);
+        if(data.output && data.output.error){
+            alert(data.output.error)
+        }else{
+            alert(data.output.status)
+        }
+      return false;
     };
 
     // Quando o WebSocket receber a imagem
@@ -105,7 +97,7 @@ const PersonPicker = () => {
                 />
                 <CustomButton
                     type="filled"
-                    title="Receber Imagem"
+                    title="Verificar status da Imagem"
                     handleClick={handleReceiveImage} // Ao clicar, solicita a imagem via WebSocket
                     customStyles='text-xs'
                 />
