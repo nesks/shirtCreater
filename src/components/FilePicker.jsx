@@ -6,20 +6,27 @@ const FilePicker = ({file, setFile, readFile}) => {
   return (
     <div className='filepicker-container'>
       <div className='flex-1 flex flex-col'>
-        <input id='file-upload'
-        type='file'
-        accept="image/*"
-        onChange={(e) => setFile(e.target.files[0])}
+      <CustomButton 
+        type="input"
+        title="Carregue uma logo"
+        handleClick={(e) => setFile(e.target.files[0])}
+        customStyles='text-xs max-h-[30px]'
         />
-        <label htmlFor='file-upload' className='filepicker-label'>
-          Upload File
-        </label>
 
         <p className='mt-2 text-gray-500 text-xs truncate'>
-          {file === '' ? "No file selected " : file.name}
+          {file === '' ? "Nenhum arquivo adicionado. " : file.name}
         </p>
+
+        {file && (
+          <img 
+            src={URL.createObjectURL(file)}
+            alt="visualização da logo"
+            className='mt-2 h-24 w-24 object-contain'
+          />
+        )}
+
       </div>
-      <div className='mt-4 flex flex-wrap gap-36'>
+      <div className='mt-4 flex flex-wrap gap-3'>
         <CustomButton 
         type="outline"
         title="logo"
