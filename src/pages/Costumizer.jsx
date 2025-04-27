@@ -30,6 +30,7 @@ const Costumizer = () => {
           file={file}
           setFile={setFile}
           readFile={readFile}
+          handleActiveFilterTab={handleActiveFilterTab}
           />
         case "aipicker":
           return <AiPicker
@@ -37,6 +38,7 @@ const Costumizer = () => {
             setPrompt={setPrompt}
             generatingImg={generatingImg}
             handleSubmit={handleSubmit}
+            handleActiveFilterTab={handleActiveFilterTab}
           />
           case "personpicker":
             return <PersonPicker

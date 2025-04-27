@@ -1,8 +1,10 @@
 import React from 'react'
 
+import state from '../store'
 import CustomButton from './CustomButton'
 
-const FilePicker = ({file, setFile, readFile}) => {
+const FilePicker = ({file, setFile, readFile, handleActiveFilterTab}) => {
+
   return (
     <div className='filepicker-container'>
       <div className='flex-1 flex flex-col'>
@@ -30,14 +32,21 @@ const FilePicker = ({file, setFile, readFile}) => {
         <CustomButton 
         type="outline"
         title="logo"
-        handleClick={()=>readFile('logo')}
+        handleClick={()=>{
+          readFile('logo')
+          state.isLogoTexture ? null : handleActiveFilterTab('logoShirt');
+        }}
         customStyles='text-xs'
         />
 
         <CustomButton 
         type="filled"
         title="Full"
-        handleClick={()=>readFile('full')}
+        handleClick={()=>{
+          readFile('full')
+          state.isFullTexture ? null : handleActiveFilterTab('stylishShirt');
+
+        }}
         customStyles='text-xs'
         />
       </div>
