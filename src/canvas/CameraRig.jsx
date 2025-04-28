@@ -9,7 +9,7 @@ const CameraRig = ({children}) => {
     const snap = useSnapshot(state);
 
 
-    useFrame((state,delta)=>{
+    useFrame((state,delta)=>{   
 
         const isBreakpoint = window.innerWidth <=1260;
         const isMobile = window.innerWidth <= 600;
@@ -30,7 +30,7 @@ const CameraRig = ({children}) => {
 
         easing.dampE(
             group.current.rotation,
-            [state.pointer.y/10, -state.pointer.x/5,0],
+            [state.pointer.y/6, -state.pointer.x/2,0],
             0.25,
             delta);
     })

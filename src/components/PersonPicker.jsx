@@ -52,8 +52,8 @@ const PersonPicker = () => {
             
         const data = await response.json();
         console.log(data);
-        if(data.output && data.output.error){
-            alert(data.output.error)
+        if(data.output && data.output.error && data.output.error.message){
+            alert(data.output.error.message)
         }else{
             alert(data.output.status)
             if(data.output.status== "completed"){
