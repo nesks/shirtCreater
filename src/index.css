@@ -19,11 +19,11 @@ html {
 }
 
 .home-content {
-  @apply flex-1 xl:justify-center justify-start flex flex-col gap-10;
+  @apply flex-1 xl:justify-center justify-start flex flex-col gap-20;
 }
 
 .head-text {
-  @apply xl:text-[10rem] text-[6rem] xl:leading-[11rem] leading-[7rem] font-black text-black;
+  @apply xl:text-[8rem] text-[4rem] xl:leading-[11rem] leading-[7rem] font-black text-green-300;
 }
 
 .download-btn {
