@@ -2,7 +2,7 @@ import React from 'react'
 import {SketchPicker} from 'react-color'
 import { useSnapshot } from 'valtio'
 import state from '../store'
-import { contaGotas } from "../assets";
+import { FaEyeDropper } from 'react-icons/fa' 
 
 import CustomButton from './CustomButton'
 
@@ -33,12 +33,12 @@ const ColorPicker = () => {
     color={snap.color}
     disableAlpha
     onChange={(color) => (state.color = color.hex)}
-  />
+  />  
 
   <div className="absolute bottom-1 right-1/12 transform -translate-x-1/2">
     <CustomButton 
       type="filled"
-      title={<img src={contaGotas} alt="Conta Gotas" className="w-4 h-4" />}
+      title={<FaEyeDropper className="w-4 h-4" />}
       handleClick={handleEyedropper}
       customStyles="text-xs"
     />

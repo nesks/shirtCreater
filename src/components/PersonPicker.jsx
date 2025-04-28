@@ -75,6 +75,11 @@ const PersonPicker = () => {
 
     return (
         <div className='filepicker-container'>
+                <h1 className='mt-2 text-gray-800 text-xs '>
+                    Adicione uma foto de corpo inteiro para experimentar a camiseta.
+                </h1>
+
+
             <div className='flex-1 flex flex-col'>
 
             <CustomButton 
