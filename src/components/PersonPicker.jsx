@@ -76,22 +76,28 @@ const PersonPicker = () => {
     return (
         <div className='filepicker-container'>
             <div className='flex-1 flex flex-col'>
-                <input
-                    id='file-upload'
-                    type='file'
-                    accept="image/*"
-                    onChange={(e) => setPerson(e.target.files[0])}
-                />
-                <label htmlFor='file-upload' className='filepicker-label'>
-                    Upload File
-                </label>
 
+            <CustomButton 
+            type="input"
+            title="Carregue uma foto"
+            handleClick={(e) => setPerson(e.target.files[0])}
+            customStyles='text-xs max-h-[30px]'
+            />
                 <p className='mt-2 text-gray-500 text-xs truncate'>
                     {person === '' ? "Nenhum arquivo selecionado" : person.name}
                 </p>
+
+                {person && (
+                <img 
+                    src={URL.createObjectURL(person)}
+                    alt="visualização da foto"
+                    className='mt-2 h-24 w-24 object-contain'
+                />
+                )}
+
             </div>
 
-            <div className='mt-4 flex flex-wrap gap-36'>
+            <div className='mt-4 flex flex-col gap-1.5'>
                 <CustomButton
                     type="filled"
                     title="Carregar ID"

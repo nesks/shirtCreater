@@ -112,7 +112,7 @@ const Costumizer = () => {
       handleDecals(type, result);
       setActiveEditorTab("");
     })
-  }
+  } 
   
   return (
       <AnimatePresence>
