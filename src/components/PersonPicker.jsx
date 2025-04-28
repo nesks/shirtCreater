@@ -105,7 +105,7 @@ const PersonPicker = () => {
             <div className='mt-4 flex flex-col gap-1.5'>
                 <CustomButton
                     type="filled"
-                    title="Carregar ID"
+                    title="Enviar imagem"
                     handleClick={fetchUserId} // Clicar aqui faz a requisição para pegar o ID
                     customStyles='text-xs'
                 />
